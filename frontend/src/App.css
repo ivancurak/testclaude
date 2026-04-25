@@ -1,113 +1,78 @@
 .app {
   min-height: 100vh;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-.header {
-  text-align: center;
-  padding: 2rem;
-  color: white;
-}
-
-.header h1 {
   margin: 0;
-  font-size: 2.5rem;
-}
-
-.health-status {
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
-  opacity: 0.9;
-}
-
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-.task-form {
+  padding: 3rem 1.5rem;
+  background:
+    radial-gradient(circle at top, rgba(246, 200, 56, 0.2), transparent 45%),
+    linear-gradient(140deg, #090b24 0%, #1b1048 55%, #350960 100%);
+  color: #f8f7ff;
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.task-input {
-  flex: 1;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  outline: none;
-}
-
-.add-button {
-  padding: 0.75rem 1.5rem;
-  background-color: #10b981;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.add-button:hover {
-  background-color: #059669;
-}
-
-.task-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.task-item {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 1rem;
-  background-color: white;
-  border-radius: 8px;
-  margin-bottom: 0.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.task-checkbox {
-  width: 20px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.task-item span {
-  flex: 1;
-  font-size: 1rem;
-}
-
-.task-item span.completed {
-  text-decoration: line-through;
-  opacity: 0.6;
-}
-
-.delete-button {
-  padding: 0.5rem 1rem;
-  background-color: #ef4444;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-.delete-button:hover {
-  background-color: #dc2626;
-}
-
-.loading,
-.empty-message {
+.hero {
+  max-width: 760px;
+  margin: 0 auto 2rem;
   text-align: center;
-  color: white;
+}
+
+.year-tag {
+  display: inline-block;
+  margin: 0 0 1rem;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid #f6c838;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f6c838;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 7vw, 4.25rem);
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-shadow:
+    0 0 8px rgba(110, 255, 255, 0.85),
+    0 0 26px rgba(110, 255, 255, 0.45);
+}
+
+.subtitle {
+  max-width: 640px;
+  margin: 1.2rem auto 0;
+  color: #ddd9ff;
   font-size: 1.1rem;
-  padding: 2rem;
+  line-height: 1.6;
+}
+
+.info-grid {
+  width: min(920px, 100%);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  padding: 1.25rem;
+  background: rgba(10, 13, 38, 0.75);
+  border: 1px solid rgba(138, 122, 244, 0.45);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.card h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.15rem;
+  color: #6efeff;
+}
+
+.card p {
+  margin: 0;
+  color: #ebebff;
+  line-height: 1.55;
 }

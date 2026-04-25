@@ -1,131 +1,43 @@
-import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
-  const [tasks, setTasks] = useState([])
-  const [newTask, setNewTask] = useState('')
-  const [health, setHealth] = useState('')
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    fetchHealth()
-    fetchTasks()
-  }, [])
-
-  const fetchHealth = async () => {
-    try {
-      const response = await fetch('/api/health')
-      const data = await response.json()
-      setHealth(data.message)
-    } catch (error) {
-      console.error('Error fetching health:', error)
-      setHealth('Backend not connected')
-    }
-  }
-
-  const fetchTasks = async () => {
-    try {
-      const response = await fetch('/api/tasks')
-      const data = await response.json()
-      setTasks(data)
-      setLoading(false)
-    } catch (error) {
-      console.error('Error fetching tasks:', error)
-      setLoading(false)
-    }
-  }
-
-  const addTask = async (e) => {
-    e.preventDefault()
-    if (!newTask.trim()) return
-
-    try {
-      const response = await fetch('/api/tasks', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ title: newTask })
-      })
-      const data = await response.json()
-      setTasks([...tasks, data])
-      setNewTask('')
-    } catch (error) {
-      console.error('Error adding task:', error)
-    }
-  }
-
-  const toggleTask = async (task) => {
-    try {
-      const response = await fetch(`/api/tasks/${task.id}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...task, completed: !task.completed })
-      })
-      const data = await response.json()
-      setTasks(tasks.map(t => t.id === task.id ? data : t))
-    } catch (error) {
-      console.error('Error updating task:', error)
-    }
-  }
-
-  const deleteTask = async (taskId) => {
-    try {
-      await fetch(`/api/tasks/${taskId}`, { method: 'DELETE' })
-      setTasks(tasks.filter(t => t.id !== taskId))
-    } catch (error) {
-      console.error('Error deleting task:', error)
-    }
-  }
-
   return (
-    <div className="app">
-      <header className="header">
-        <h1>React + Flask Task Manager</h1>
-        <p className="health-status">{health}</p>
-      </header>
+    <main className="app">
+      <section className="hero">
+        <p className="year-tag">Arcade Game of the Year — 1985</p>
+        <h1>Gauntlet</h1>
+        <p className="subtitle">
+          Atari&apos;s dungeon crawler blended co-op action, nonstop enemy waves,
+          and iconic narration into one of the most influential arcade experiences ever made.
+        </p>
+      </section>
 
-      <div className="container">
-        <form onSubmit={addTask} className="task-form">
-          <input
-            type="text"
-            value={newTask}
-            onChange={(e) => setNewTask(e.target.value)}
-            placeholder="Add a new task..."
-            className="task-input"
-          />
-          <button type="submit" className="add-button">Add Task</button>
-        </form>
+      <section className="info-grid" aria-label="Gauntlet highlights">
+        <article className="card">
+          <h2>Why it stood out</h2>
+          <p>
+            Four-player simultaneous gameplay felt revolutionary in arcades and made
+            every run feel like a team adventure.
+          </p>
+        </article>
 
-        {loading ? (
-          <p className="loading">Loading tasks...</p>
-        ) : (
-          <ul className="task-list">
-            {tasks.map(task => (
-              <li key={task.id} className="task-item">
-                <input
-                  type="checkbox"
-                  checked={task.completed}
-                  onChange={() => toggleTask(task)}
-                  className="task-checkbox"
-                />
-                <span className={task.completed ? 'completed' : ''}>
-                  {task.title}
-                </span>
-                <button
-                  onClick={() => deleteTask(task.id)}
-                  className="delete-button"
-                >
-                  Delete
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
+        <article className="card">
+          <h2>Signature moment</h2>
+          <p>
+            The booming voice line, &quot;Wizard needs food badly,&quot; became a defining
+            phrase of 1980s gaming culture.
+          </p>
+        </article>
 
-        {tasks.length === 0 && !loading && (
-          <p className="empty-message">No tasks yet. Add one to get started!</p>
-        )}
-      </div>
-    </div>
+        <article className="card">
+          <h2>Legacy</h2>
+          <p>
+            Gauntlet helped shape multiplayer action games and inspired generations
+            of co-op dungeon crawlers across console and PC.
+          </p>
+        </article>
+      </section>
+    </main>
   )
 }
 
